@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 
-def _retrieve(url, limit):
+def retrieve_feed(url, limit):
     
     # Dict to store the scraped data in
     feed = []
@@ -54,5 +54,5 @@ if __name__ == '__main__':
     category = ['GENERAL', 'IMPROVEMENTS', 'INCIDENTS', 'MAINTENANCE']
     
     for i, n in enumerate(range(26,30)):
-        _feed = _retrieve('https://marine.copernicus.eu/user-corner/user-notification-service?field_category=' + str(n), 5)
+        _feed = retrieve_feed('https://marine.copernicus.eu/user-corner/user-notification-service?field_category=' + str(n), 5)
         print_feed(_feed, category[i])
