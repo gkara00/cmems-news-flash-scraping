@@ -3,8 +3,10 @@ from bs4 import BeautifulSoup
 import datetime
 
 def retrieve_feed(url, limit):
+    '''url (str): URL downnload HTML content
+       limit (int): to apply a limit on a result'''
     
-    # Dict to store the scraped data in
+    # List to store the scraped data in
     feed = []
 
     # Extract news flash from http://marine.copernicus.eu/
@@ -36,6 +38,8 @@ def retrieve_feed(url, limit):
     return feed
 
 def print_feed(feed, category):
+    '''feed (list): list with data in the form (date, info, status) 
+       category (str): the notification category'''
     print()
     print(10 * '*' + category + 10 * '*')
     for r in feed:  
@@ -52,7 +56,8 @@ if __name__ == '__main__':
     print(80 * '#')
     
     category = ['GENERAL', 'IMPROVEMENTS', 'INCIDENTS', 'MAINTENANCE']
+    nout = 5  # number of results per category
     
     for i, n in enumerate(range(26,30)):
-        _feed = retrieve_feed('https://marine.copernicus.eu/user-corner/user-notification-service?field_category=' + str(n), 5)
+        _feed = retrieve_feed('https://marine.copernicus.eu/user-corner/user-notification-service?field_category=' + str(n), nout)
         print_feed(_feed, category[i])
